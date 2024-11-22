@@ -7,8 +7,6 @@ export type DateType = string | number | Dayjs | Date | null | undefined;
 
 export type ModeType = 'single' | 'range' | 'multiple';
 
-export type HeaderButtonPositions = 'around' | 'right' | 'left';
-
 export type LocalState = {
   date: DateType;
   startDate: DateType;
@@ -25,7 +23,6 @@ export type CalendarAction = {
 };
 
 export type CalendarThemeProps = {
-  headerButtonsPosition?: HeaderButtonPositions;
   headerContainerStyle?: ViewStyle;
   headerTextContainerStyle?: ViewStyle;
   headerTextStyle?: TextStyle;
@@ -64,6 +61,7 @@ export interface IDayObject {
   inRange: boolean;
   leftCrop: boolean;
   rightCrop: boolean;
+  malayalam?: MalayalamDate
 }
 
 export type SingleChange = (params: { date: DateType }) => void;
@@ -97,4 +95,17 @@ export interface DatePickerBaseProps {
   onChange?: SingleChange | RangeChange | MultiChange;
   initialView?: CalendarViews;
   height?: number;
+}
+
+export interface MalayalamDate {
+  year: number,
+  date: number,
+  month: string,
+  star: string,
+}
+export interface MalayalamDatesData {
+  [date: string]: {
+    date: string,
+    ml: MalayalamDate
+  }
 }

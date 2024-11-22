@@ -18,8 +18,10 @@ import 'dayjs/locale/de';
 import 'dayjs/locale/es';
 import 'dayjs/locale/fr';
 import 'dayjs/locale/tr';
+import 'dayjs/locale/ml';
 
 const Themes: ITheme[] = [
+  { mainColor: '#003366', activeTextColor: '#fff' },
   { mainColor: '#0047FF', activeTextColor: '#fff' },
   { mainColor: '#00D27A', activeTextColor: '#fff' },
   { mainColor: '#F5803E', activeTextColor: '#fff' },
@@ -42,7 +44,7 @@ export default function App() {
   const [dates, setDates] = useState<DateType[] | undefined>();
 
   const [theme, setTheme] = useState<ITheme | undefined>(Themes[0]);
-  const [locale, setLocale] = useState('en');
+  const [locale, setLocale] = useState('ml');
 
   const onChangeMode = useCallback(
     (value: ModeType) => {
@@ -70,90 +72,90 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.body}>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>React Native UI DatePicker</Text>
-        </View>
+        <View style={styles.controlsWrapper}>
+          <ThemeSelector themes={Themes} setTheme={setTheme} />
 
-        <ThemeSelector themes={Themes} setTheme={setTheme} />
+          <LocaleSelector
+            locale={locale}
+            setLocale={setLocale}
+            mainColor={theme?.mainColor}
+            activeTextColor={theme?.activeTextColor}
+          />
 
-        <LocaleSelector
-          locale={locale}
-          setLocale={setLocale}
-          mainColor={theme?.mainColor}
-          activeTextColor={theme?.activeTextColor}
-        />
-
-        <View style={styles.modesContainer}>
-          <Text
-            style={{
-              // eslint-disable-next-line react-native/no-inline-styles
-              marginRight: 8,
-            }}
-          >
-            Mode:
-          </Text>
-          <TouchableOpacity
-            style={[
-              styles.modeSelect,
-              {
+          <View style={styles.modesContainer}>
+            <Text
+              style={{
                 // eslint-disable-next-line react-native/no-inline-styles
-                backgroundColor:
-                  mode === 'single' ? theme?.mainColor : undefined,
-              },
-            ]}
-            onPress={() => onChangeMode('single')}
-          >
-            <Text
-              style={[
-                styles.modeSelectText,
-                mode === 'single' && { color: theme?.activeTextColor },
-              ]}
+                marginRight: 8,
+              }}
             >
-              Single
+              Mode:
             </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[
-              styles.modeSelect,
-              // eslint-disable-next-line react-native/no-inline-styles
-              {
-                backgroundColor:
-                  mode === 'range' ? theme?.mainColor : undefined,
-              },
-            ]}
-            onPress={() => onChangeMode('range')}
-          >
-            <Text
+            <TouchableOpacity
               style={[
-                styles.modeSelectText,
-                mode === 'range' && { color: theme?.activeTextColor },
+                styles.modeSelect,
+                {
+                  // eslint-disable-next-line react-native/no-inline-styles
+                  backgroundColor:
+                    mode === 'single' ? theme?.mainColor : undefined,
+                },
               ]}
+              onPress={() => onChangeMode('single')}
             >
-              Range
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[
-              styles.modeSelect,
-              // eslint-disable-next-line react-native/no-inline-styles
-              {
-                backgroundColor:
-                  mode === 'multiple' ? theme?.mainColor : undefined,
-              },
-            ]}
-            onPress={() => onChangeMode('multiple')}
-          >
-            <Text
+              <Text
+                style={[
+                  styles.modeSelectText,
+                  mode === 'single' && { color: theme?.activeTextColor },
+                ]}
+              >
+                Single
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
               style={[
-                styles.modeSelectText,
-                mode === 'multiple' && { color: theme?.activeTextColor },
+                styles.modeSelect,
+                // eslint-disable-next-line react-native/no-inline-styles
+                {
+                  backgroundColor:
+                    mode === 'range' ? theme?.mainColor : undefined,
+                },
               ]}
+              onPress={() => onChangeMode('range')}
             >
-              Multiple
-            </Text>
-          </TouchableOpacity>
+              <Text
+                style={[
+                  styles.modeSelectText,
+                  mode === 'range' && { color: theme?.activeTextColor },
+                ]}
+              >
+                Range
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.modeSelect,
+                // eslint-disable-next-line react-native/no-inline-styles
+                {
+                  backgroundColor:
+                    mode === 'multiple' ? theme?.mainColor : undefined,
+                },
+              ]}
+              onPress={() => onChangeMode('multiple')}
+            >
+              <Text
+                style={[
+                  styles.modeSelectText,
+                  mode === 'multiple' && { color: theme?.activeTextColor },
+                ]}
+              >
+                Multiple
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
-        <View
+
+
+        {/* <View
           style={{
             flexDirection: 'row',
             alignItems: 'center',
@@ -180,7 +182,8 @@ export default function App() {
           <Text style={{ fontSize: 13, color: 'gray' }}>
             (Works in Single mode)
           </Text>
-        </View>
+        </View> */}
+
         <View style={styles.datePickerContainer}>
           <View style={styles.datePicker}>
             <DateTimePicker
@@ -210,18 +213,18 @@ export default function App() {
                 borderWidth: 1,
               }}
             />
-            <View style={styles.footer}>
+            {/* <View style={styles.footer}>
               {mode === 'single' ? (
                 <View style={styles.footerContainer}>
                   <Text>
                     {date
                       ? dayjs(date)
-                          .locale(locale)
-                          .format(
-                            timePicker
-                              ? 'MMMM, DD, YYYY - HH:mm'
-                              : 'MMMM, DD, YYYY'
-                          )
+                        .locale(locale)
+                        .format(
+                          timePicker
+                            ? 'MMMM, DD, YYYY - HH:mm'
+                            : 'MMMM, DD, YYYY'
+                        )
                       : '...'}
                   </Text>
                   <Pressable
@@ -254,8 +257,8 @@ export default function App() {
                     </Text>
                     {range.startDate
                       ? dayjs(range.startDate)
-                          .locale(locale)
-                          .format('MMMM, DD, YYYY')
+                        .locale(locale)
+                        .format('MMMM, DD, YYYY')
                       : '...'}
                   </Text>
                   <Text>
@@ -264,8 +267,8 @@ export default function App() {
                     </Text>
                     {range.endDate
                       ? dayjs(range.endDate)
-                          .locale(locale)
-                          .format('MMMM, DD, YYYY')
+                        .locale(locale)
+                        .format('MMMM, DD, YYYY')
                       : '...'}
                   </Text>
                 </View>
@@ -280,7 +283,7 @@ export default function App() {
                     ))}
                 </View>
               ) : null}
-            </View>
+            </View> */}
           </View>
         </View>
 
@@ -327,9 +330,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   datePicker: {
-    width: 330,
+    width: 800,
     backgroundColor: '#fff',
-    padding: 15,
+    padding: 8,
     borderRadius: 15,
     shadowRadius: 20,
     shadowColor: '#000',
@@ -354,4 +357,8 @@ const styles = StyleSheet.create({
   todayButtonText: {
     fontWeight: 'bold',
   },
+  controlsWrapper: {
+    flexDirection: 'row',
+    gap: 48
+  }
 });

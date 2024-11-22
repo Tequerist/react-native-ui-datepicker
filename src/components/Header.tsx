@@ -165,15 +165,6 @@ const Header = ({ buttonPrevIcon, buttonNextIcon }: HeaderProps) => {
       style={[styles.headerContainer, theme?.headerContainerStyle]}
       accessibilityRole="header"
     >
-      {theme?.headerButtonsPosition === 'left' ? (
-        <View style={styles.container}>
-          <View style={styles.row}>
-            {renderPrevButton}
-            {renderNextButton}
-          </View>
-          {renderSelectors}
-        </View>
-      ) : theme?.headerButtonsPosition === 'right' ? (
         <View style={styles.container}>
           {renderSelectors}
           <View style={styles.row}>
@@ -181,23 +172,16 @@ const Header = ({ buttonPrevIcon, buttonNextIcon }: HeaderProps) => {
             {renderNextButton}
           </View>
         </View>
-      ) : (
-        <View style={styles.container}>
-          {renderPrevButton}
-          {renderSelectors}
-          {renderNextButton}
-        </View>
-      )}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   headerContainer: {
-    marginBottom: 5,
+    marginBottom: 3,
   },
   container: {
-    padding: 5,
+    padding: 3,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -208,8 +192,8 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     marginHorizontal: 1,
-    paddingHorizontal: 5,
-    paddingVertical: 5,
+    paddingHorizontal: 3,
+    paddingVertical: 3,
     borderRadius: 5,
   },
   text: {

@@ -14,8 +14,8 @@ const MonthSelector = () => {
           const activeItemStyle =
             index === month
               ? {
-                  borderColor: theme?.selectedItemColor || '#0047FF',
-                  backgroundColor: theme?.selectedItemColor || '#0047FF',
+                  borderColor: theme?.selectedItemColor || '#003366',
+                  backgroundColor: theme?.selectedItemColor || '#003366',
                 }
               : null;
 

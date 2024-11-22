@@ -32,8 +32,8 @@ dayjs.extend(localizedFormat);
 
 export interface DatePickerSingleProps
   extends CalendarThemeProps,
-    HeaderProps,
-    DatePickerBaseProps {
+  HeaderProps,
+  DatePickerBaseProps {
   mode: 'single';
   date?: DateType;
   onChange?: SingleChange;
@@ -41,8 +41,8 @@ export interface DatePickerSingleProps
 
 export interface DatePickerRangeProps
   extends CalendarThemeProps,
-    HeaderProps,
-    DatePickerBaseProps {
+  HeaderProps,
+  DatePickerBaseProps {
   mode: 'range';
   startDate?: DateType;
   endDate?: DateType;
@@ -51,8 +51,8 @@ export interface DatePickerRangeProps
 
 export interface DatePickeMultipleProps
   extends CalendarThemeProps,
-    HeaderProps,
-    DatePickerBaseProps {
+  HeaderProps,
+  DatePickerBaseProps {
   mode: 'multiple';
   dates?: DateType[];
   onChange?: MultiChange;

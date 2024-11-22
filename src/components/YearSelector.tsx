@@ -22,12 +22,12 @@ const YearSelector = () => {
       const activeItemStyle: ViewStyle =
         year === selectedYear
           ? {
-              borderColor: theme?.selectedItemColor || '#0047FF',
-              backgroundColor: theme?.selectedItemColor || '#0047FF',
+              borderColor: theme?.selectedItemColor || '#003366',
+              backgroundColor: theme?.selectedItemColor || '#003366',
             }
           : year === activeYear
           ? {
-              borderColor: theme?.selectedItemColor || '#0047FF',
+              borderColor: theme?.selectedItemColor || '#003366',
             }
           : {};
 
@@ -36,7 +36,7 @@ const YearSelector = () => {
           ? { color: '#fff', ...theme?.selectedTextStyle }
           : year === activeYear
           ? {
-              color: theme?.selectedItemColor || '#0047FF',
+              color: theme?.selectedItemColor || '#003366',
               fontWeight: 'bold',
             }
           : { ...theme?.calendarTextStyle };

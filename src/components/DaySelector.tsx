@@ -208,6 +208,7 @@ const DaySelector = () => {
               rightCrop={day.rightCrop}
               onSelectDate={handleSelectDate}
               height={height}
+              malayalam={day.malayalam}
             />
           ) : (
             <EmptyDay key={index} height={height} />

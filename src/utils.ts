@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
-import type { DateType, IDayObject } from './types';
+import type { DateType, IDayObject, MalayalamDatesData } from './types';
+import malayalamDates from './assets/ml_data.json'
 
 export const CALENDAR_FORMAT = 'YYYY-MM-DD HH:mm';
 export const DATE_FORMAT = 'YYYY-MM-DD';
@@ -14,7 +15,7 @@ export const getWeekdays = () => dayjs.weekdays();
 export const getWeekdaysShort = () => dayjs.weekdaysShort();
 
 export const getWeekdaysMin = (firstDayOfWeek: number) => {
-  let days = dayjs.weekdaysMin();
+  let days = dayjs.weekdaysShort();
   if (firstDayOfWeek > 0) {
     days = [
       ...days.slice(firstDayOfWeek, days.length),
@@ -267,6 +268,8 @@ const generateDayObject = (
   isCurrentMonth: boolean,
   dayOfMonth: number
 ) => {
+  const mlDate = (malayalamDates as MalayalamDatesData)[dayjs(date).startOf('date').toISOString()]
+
   return {
     text: day.toString(),
     day: day,
@@ -274,6 +277,7 @@ const generateDayObject = (
     disabled: isDateDisabled(date, { minDate, maxDate, disabledDates }),
     isCurrentMonth,
     dayOfMonth,
+    malayalam: mlDate?.ml
   };
 };
 
